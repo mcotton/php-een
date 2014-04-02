@@ -7,7 +7,7 @@ include('een.php');
 
 $een = new EagleEyeNetworks();
 
-$username = '<username>';
+$username = '<username';
 $password = '<password>';
 
 $user_obj = $een->login($username, $password);
@@ -30,5 +30,8 @@ print('</ul>');
 print('<h1>User Devices</h1>');
 print($user_devices);
 
+
+print('<h1>Image Calls</h1>');
+print('<img src="image.php?c=100aa8ae">');
 ?>
 
