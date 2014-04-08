@@ -8,7 +8,7 @@ PHP wrapper for the [Eagle Eye Networks API](https://apidocs.eagleeyenetworks.co
     $een = new EagleEyeNetworks();
 
 
-    //supply your EEN credentials
+    //supply your EEN credentials in `config.php`
     $username = '<username>';
     $password = '<password>';
 

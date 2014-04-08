@@ -65,7 +65,7 @@ class EagleEyeNetworks{
                 curl_close($cr);
 
                 if(isset($device_list)) {
-                        return $device_list;
+                        return json_decode($device_list);
                 } else {
                         return json_decode("[]");
                 }
@@ -74,13 +74,22 @@ class EagleEyeNetworks{
         function image($esn, $ts='now', $type='all', $q='high') {
                 $cr = curl_init($this->HOST.'/asset/prev/image.jpeg?c='.$esn.';t='.$ts.';q='.$q.';a='.$type);
                 curl_setopt($cr, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($cr, CURLOPT_FOLLOWLOCATION, true);
+                #curl_setopt($cr, CURLOPT_HEADER, true); #causes image fetch to break
+                curl_setopt($cr, CURLINFO_HEADER_OUT, true);
                 curl_setopt($cr, CURLOPT_COOKIEJAR, $this->cookie);
                 curl_setopt($cr, CURLOPT_COOKIEFILE, $this->cookie);
 		$content = curl_exec($cr);
 		$info = curl_getinfo($cr);
                 curl_close($cr);
-		header('Content-Type: image/jpeg');
-		echo $content;
+		switch($info['http_code']) {
+			case 200:
+				header('Content-Type: image/jpeg');
+				echo $content;
+				break;
+			default:
+				die('Received response code: ' . $info['http_code']);
+		}
         }
 
 }

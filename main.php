@@ -3,12 +3,10 @@
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
+include('config.php');
 include('een.php');
 
 $een = new EagleEyeNetworks();
-
-$username = '<username';
-$password = '<password>';
 
 $user_obj = $een->login($username, $password);
 $user_devices = $een->list_devices();
@@ -27,11 +25,12 @@ foreach($user_obj->layouts as $name => $value) {
 }
 print('</ul>');
 
-print('<h1>User Devices</h1>');
-print($user_devices);
+print('<h1>User Devices (type == camera && status == ATTD)</h1>');
+foreach ($user_devices as $dev) {
+	if($dev[3] == 'camera' && $dev[5] == 'ATTD') {
+		print("<img style='width: 320px;' src=image.php?c=$dev[1]>");
+	}
+}
 
-
-print('<h1>Image Calls</h1>');
-print('<img src="image.php?c=100aa8ae">');
 ?>
 
