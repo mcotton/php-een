@@ -87,6 +87,9 @@ class EagleEyeNetworks{
 				header('Content-Type: image/jpeg');
 				echo $content;
 				break;
+			case 401:
+				header('HTTP/1.0 401 Unauthorized');
+				break;
 			default:
 				die('Received response code: ' . $info['http_code']);
 		}
