@@ -21,6 +21,9 @@ PHP wrapper for the [Eagle Eye Networks API](https://apidocs.eagleeyenetworks.co
     $user_devices = $een->list_devices();
 
 
+    //you can use page.html and jquery.preview.js to show previews on your site
+    $('#preview').cameraPreview({ 'camera_id': '1001abcd' });
+
 
 ####Requirements####
 
