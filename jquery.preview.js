@@ -47,11 +47,14 @@
             $preview.attr('src', 'image.php?c=' + camera_id + '&rand=' + Math.random());
             if(debug) {
                 console.log('jQuery.preview: new image loaded');
-                $preview_debug.text("jQuery.preview: new image loaded").fadeIn(500).fadeOut(500);
+                $preview_debug.text("jQuery.preview: new image loaded");
             }
         }
 
         $preview.on('load', function() {
+            if(debug) {
+                $preview_debug.text("jQuery.preview: new image requested");
+            }
             setTimeout(updatePreview, delay)
         });
 
