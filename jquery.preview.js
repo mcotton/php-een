@@ -2,9 +2,9 @@
 (function($) {
 
     $.fn.cameraPreview = function(options) {
-   
+
         // use the defaults or customized options if they exist
-        var options     =   options || {}, 
+        var options     =   options || {},
             camera_id   =   options.camera_id || '',
             width       =   options.width || 320,
             height      =   options.height || 180,
@@ -15,11 +15,15 @@
 
         if(!camera_id) {
             // can't do anything without a camera_id
-            return false;   
+            return false;
         }
 
         // add preview image to calling div
         this.append(preview);
+        if(debug) {
+            this.append("<h6 id=" + camera_id + "_debug></h6>");
+            $preview_debug = $("#" + camera_id + "_debug");
+        }
         $preview = $(preview);
 
         $preview.width(width + 'px');
@@ -33,24 +37,30 @@
                 lockout = true
                 $.get('login.php', function() {
                     if(debug) console.log('jQuery.preview: login successful');
-                    setTimeout(updatePreview, 0) 
-                    lockout = false 
+                    setTimeout(updatePreview, 0)
+                    lockout = false
                 });
             }
         }
 
-        function updatePreview() { 
+        function updatePreview() {
             $preview.attr('src', 'image.php?c=' + camera_id + '&rand=' + Math.random());
-            if(debug) console.log('jQuery.preview: updating image');
+            if(debug) {
+                console.log('jQuery.preview: new image loaded');
+                $preview_debug.text("jQuery.preview: new image loaded").fadeIn(500).fadeOut(500);
+            }
         }
 
         $preview.on('load', function() {
-            setTimeout(updatePreview, delay) 
+            setTimeout(updatePreview, delay)
         });
 
 
         $preview.on('error', function() {
-            if(debug) console.log('jQuery.preview: image error'); 
+            if(debug) {
+                console.log('jQuery.preview: image error');
+                $preview_debug.text("jQuery.preview: image error").fadeIn(500).fadeOut(500);
+            }
             login();
         });
 
@@ -63,3 +73,4 @@
     }
 
 }(jQuery));
+                                                                                                      75,11         Bot

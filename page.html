@@ -6,6 +6,21 @@
 
     <div id="preview"></preview>
 
+<h1>Embedding Eagle Eye Previews in PHP</h1>
+
+<p>
+    The above is an example of how you can embed the preview stream of a camera on to your webpage.  This works with a simple PHP page and a jQuery plugin to refresh the images.  Just to illustrate that it is working I have included the loading text at the bottom of the image.  This is something that can be easily removed by setting "debug: false" in the jQuery plugin.
+</p>
+
+<p>
+    This works well for a low traffic site without needed the user to create an account.  Authentication is handled in PHP so there isn't any credentials risk in embedding credentials in the webpage.
+</p>
+
+<p>
+    For higher traffic websites, you would want to cache the iamges before going to each user to prevent unneccessary load on your webserver.  This code sample does not that have implemented now for brevitity.  It will be updating with that functionality in the future.
+</p>
+
+
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="jquery.preview.js"></script>
 <script>
