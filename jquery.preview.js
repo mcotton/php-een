@@ -62,7 +62,7 @@
         $preview.on('error', function() {
             if(debug) {
                 console.log('jQuery.preview: image error');
-                $preview_debug.text("jQuery.preview: image error").fadeIn(500).fadeOut(500);
+                $preview_debug.text("jQuery.preview: image error");
             }
             login();
         });
