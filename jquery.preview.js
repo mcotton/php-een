@@ -46,7 +46,7 @@
         function getCachedImage() {
             $preview.attr('src', 'default_image.php?c=' + camera_id);
             if(debug) {
-                console.log('jQuery.getCachedImage: loading cached image');
+                console.log('jQuery.getCachedImage: cached image loaded');
                 $preview_debug.text('jQuery.getCachdImage: cached image loaded');
             }
         }
@@ -54,15 +54,15 @@
         function updatePreview() {
             $preview.attr('src', 'image.php?c=' + camera_id + '&rand=' + Math.random());
             if(debug) {
-                console.log('jQuery.preview: new image loaded');
-                $preview_debug.text("jQuery.preview: new image loaded");
+                console.log('jQuery.preview: new image requested');
+                $preview_debug.text("jQuery.preview: new image requested");
             }
         }
 
         $preview.on('load', function() {
             if(debug) {
-                console.log('jQuery.preview: new image requested');
-                $preview_debug.text("jQuery.preview: new image requested");
+                console.log('jQuery.preview: new image loaded');
+                $preview_debug.text("jQuery.preview: new image loaded");
             }
             setTimeout(updatePreview, delay)
         });
