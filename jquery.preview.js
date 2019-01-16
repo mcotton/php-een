@@ -31,8 +31,8 @@
 
         function login() {
             if(lockout) {
-                // force a 5 second delay between login attempts
-                setTimeout(login, 5000)
+                // force a 3 second delay between login attempts
+                setTimeout(login, 3000)
             } else {
                 lockout = true
                 $.get('login.php', function() {
@@ -61,6 +61,7 @@
 
         $preview.on('load', function() {
             if(debug) {
+                console.log('jQuery.preview: new image requested');
                 $preview_debug.text("jQuery.preview: new image requested");
             }
             setTimeout(updatePreview, delay)
