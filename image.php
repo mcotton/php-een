@@ -7,10 +7,6 @@ include('een.php');
 
 $een = new EagleEyeNetworks();
 
-#$username = '<username>';
-#$password = '<password>';
-
-#$user_obj = $een->login($username, $password);
 if(isset($_GET['c'])) $een->image($_GET['c']);
 
 ?>

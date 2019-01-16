@@ -3,10 +3,13 @@
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
+include('config.php');
+
 class EagleEyeNetworks{
 
         var $HOST = "https://api.eagleeyenetworks.com";
         var $cookie = '/tmp/cookie.txt';
+
 
         function __construct() {
                 $current_session = session_id();
@@ -15,12 +18,12 @@ class EagleEyeNetworks{
                 session_write_close();
         }
 
-        function login($user, $pass, $realm='eagleeyenetworks') {
+        function login() {
                 // Step 1 of login process, get token
                 $cr = curl_init($this->HOST.'/g/aaa/authenticate');
-                $data = array(  'username' => $user,
-                                'password' => $pass,
-                                'realm' => $realm);
+                $data = array(  'username' => $username,
+                                'password' => $passwor,
+                                'realm' => 'eagleeyenetworks');
 
                 curl_setopt($cr, CURLOPT_POST, true);
                 curl_setopt($cr, CURLOPT_POSTFIELDS, $data);
@@ -89,10 +92,14 @@ class EagleEyeNetworks{
 				break;
 			case 401:
 				header('HTTP/1.0 401 Unauthorized');
+                                $this->login();
 				break;
 			default:
 				die('Received response code: ' . $info['http_code']);
 		}
+                $fp = fopen("/tmp/$esn", "wb");
+                fwrite($fp, $content);
+                fclose($fp);
         }
 
 }

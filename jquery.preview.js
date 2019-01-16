@@ -43,6 +43,14 @@
             }
         }
 
+        function getCachedImage() {
+            $preview.attr('src', 'default_image.php?c=' + camera_id);
+            if(debug) {
+                console.log('jQuery.getCachedImage: loading cached image');
+                $preview_debug.text('jQuery.getCachdImage: cached image loaded');
+            }
+        }
+
         function updatePreview() {
             $preview.attr('src', 'image.php?c=' + camera_id + '&rand=' + Math.random());
             if(debug) {
@@ -67,6 +75,8 @@
             login();
         });
 
+        //pull the latest cached image
+        getCachedImage();
 
         //fetch the first image
         updatePreview();
