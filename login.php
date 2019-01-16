@@ -8,7 +8,7 @@ include('een.php');
 
 $een = new EagleEyeNetworks();
 
-$user_obj = $een->login($username, $password);
+$user_obj = $een->login();
 $user_devices = $een->list_devices();
 
 ?>

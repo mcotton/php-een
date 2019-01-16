@@ -7,6 +7,8 @@ include('config.php');
 
 class EagleEyeNetworks{
 
+        private $config;
+
         var $HOST = "https://api.eagleeyenetworks.com";
         var $cookie = '/tmp/cookie.txt';
 
@@ -14,16 +16,17 @@ class EagleEyeNetworks{
         function __construct() {
                 $current_session = session_id();
                 if(empty($current_session)) session_start();
-                #echo "SID: ".SID."<br>session_id(): ".session_id()."<br>COOKIE: ".$_COOKIE["PHPSESSID"];
+
                 session_write_close();
+                include('config.php');
+                $this->config = $config;
         }
 
         function login() {
                 // Step 1 of login process, get token
                 $cr = curl_init($this->HOST.'/g/aaa/authenticate');
-                $data = array(  'username' => $username,
-                                'password' => $passwor,
-                                'realm' => 'eagleeyenetworks');
+                $data = array(  'username' => $this->config['username'],
+                                'password' => $this->config['password']);
 
                 curl_setopt($cr, CURLOPT_POST, true);
                 curl_setopt($cr, CURLOPT_POSTFIELDS, $data);

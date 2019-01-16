@@ -1,6 +1,6 @@
 <?php
 
-	$username = '<username>';
-	$password = '<password>';
+	$config['username'] = '<username>';
+	$config['password'] = '<password>';
 
 ?>
