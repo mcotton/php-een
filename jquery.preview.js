@@ -53,6 +53,9 @@
 
         function updatePreview() {
             $preview.attr('src', 'image.php?c=' + camera_id + '&rand=' + Math.random());
+            $preview.css('background-image', 'url(default_image.php?c=' + camera_id + ')');
+            $preview.css('background-position', 'center');
+            $preview.css('background-size', 'cover');
             if(debug) {
                 console.log('jQuery.preview: new image requested');
                 $preview_debug.text("jQuery.preview: new image requested");
