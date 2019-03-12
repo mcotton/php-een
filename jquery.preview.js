@@ -43,17 +43,10 @@
             }
         }
 
-        function getCachedImage() {
-            $preview.attr('src', 'default_image.php?c=' + camera_id);
-            if(debug) {
-                console.log('jQuery.getCachedImage: cached image loaded');
-                $preview_debug.text('jQuery.getCachdImage: cached image loaded');
-            }
-        }
 
         function updatePreview() {
             $preview.attr('src', 'image.php?c=' + camera_id + '&rand=' + Math.random());
-            $preview.css('background-image', 'url(default_image.php?c=' + camera_id + ')');
+            $preview.css('background-image', 'url(loading_image.jpg');
             $preview.css('background-position', 'center');
             $preview.css('background-size', 'cover');
             if(debug) {
@@ -78,9 +71,6 @@
             }
             login();
         });
-
-        //pull the latest cached image
-        getCachedImage();
 
         //fetch the first image
         updatePreview();
